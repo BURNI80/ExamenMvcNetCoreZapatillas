@@ -1,0 +1,23 @@
+﻿@model Zapatilla
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        @Model.Nombre
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">@Model.Descripcion</li>
+        <li class="list-group-item">Precio: @Model.Precio</li>
+    </ul>
+</div>
+
+<div class="imagenes">
+
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js" ></script>
+<script>
+    $(document).ready(function(){
+        var id = '@Model.IdProducto';
+        $('.imagenes').load("/Zapatillas/_ImagenesPartial/?id="+ id);
+    })
+</script>

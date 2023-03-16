@@ -1,0 +1,13 @@
+﻿@model List<Zapatilla>
+
+<h1>Zapatillas</h1>
+
+@foreach (Zapatilla z in Model)
+{
+    <a asp-action="Zapatilla" asp-controller="Zapatillas" asp-route-id="@z.IdProducto" class="card" style="width: 18rem;">
+        <div class="card-body">
+            <h5 class="card-title">@z.Nombre</h5>
+            <h6 class="card-subtitle mb-2 text-muted">@z.Precio €</h6>
+        </div>
+    </a>
+}

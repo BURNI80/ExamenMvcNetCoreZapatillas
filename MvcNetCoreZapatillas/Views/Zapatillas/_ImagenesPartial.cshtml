@@ -1,0 +1,46 @@
+﻿@model ImagenZapatilla
+
+<div class="card" style="width: 18rem;">
+    <div class="card-header">
+        Imagen @ViewData["POSICION"] de @ViewData["TOTALIMG"]
+    </div>
+    <ul class="list-group list-group-flush">
+        <li class="list-group-item">
+            <button class="btn btn-primary" id="primera">PRIMERA</button>
+            <button class="btn btn-primary" id="anterior">ANTERIOR</button>
+            <button class="btn btn-primary" id="siguiente">SIGUIENTE</button>
+            <button class="btn btn-primary" id="ultima">ULTIMA</button>
+        </li>
+        <li class="list-group-item images"><img class="img" width="150px" src="@Model.Imagen" /></li>
+    </ul>
+</div>
+
+<script src="~/lib/jquery/dist/jquery.min.js"></script>
+<script>
+    $(document).ready(function () {
+        var id = '@Model.IdProducto'
+        var max = '@ViewData["TOTALIMG"]'
+        var posicion = '@ViewData["POSICION"]'
+        $("#primera").click(function () {
+            $('.imagenes').load("/Zapatillas/_ImagenesPartial/?id=" + id + "&posicion=1");
+        })
+        $("#anterior").click(function () {
+            var pos = (parseInt(posicion) - 1)
+            if (pos <= 1) {
+                pos = 1
+            }
+            $('.imagenes').load("/Zapatillas/_ImagenesPartial/?id=" + id + "&posicion=" + pos);
+        })
+        $("#siguiente").click(function () {
+            var pos = (parseInt(posicion) + 1)
+            if(pos > max){
+                pos = max
+            }
+            $('.imagenes').load("/Zapatillas/_ImagenesPartial/?id=" + id + "&posicion=" + pos);
+        })
+        $("#ultima").click(function () {
+            $('.imagenes').load("/Zapatillas/_ImagenesPartial/?id=" + id + "&posicion=" + max);
+        })
+
+    })
+</script>
